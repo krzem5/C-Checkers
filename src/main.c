@@ -15,7 +15,7 @@ int main(void){
 	checkers_board_t board;
 	checkers_move_history_t history;
 	checkers_init_board(&board,&history);
-	while ((!board.is_white_turn?checkers_make_player_move:checkers_make_ai_move)(&board,&history));
+	while ((board.is_white_turn?checkers_make_player_move:checkers_make_ai_move)(&board,&history));
 	checkers_print_board(&board,&history);
 	checkers_free_history(&history);
 	tcsetattr(STDOUT_FILENO,TCSANOW,&old_terminal_config);
