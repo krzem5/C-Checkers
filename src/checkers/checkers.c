@@ -1,3 +1,6 @@
+#ifdef _MSC_VER
+#include <intrin.h>
+#endif
 #include <checkers/checkers.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,8 +8,19 @@
 
 
 
+#ifdef _MSC_VER
+#pragma intrinsic(__popcnt)
+#pragma intrinsic(_BitScanForward)
+static inline unsigned int FIND_FIRST_SET_BIT(unsigned int m){
+	unsigned int out;
+	_BitScanForward(&out,m);
+	return out;
+}
+#define COUNT_SET_BITS(m) __popcnt(m)
+#else
 #define FIND_FIRST_SET_BIT(m) (__builtin_ffs(m)-1)
 #define COUNT_SET_BITS(m) __builtin_popcount(m)
+#endif
 
 
 
