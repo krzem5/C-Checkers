@@ -104,5 +104,4 @@ void checkers_print_moves(const checkers_board_moves_t* moves);
 
 
 
-
 #endif
